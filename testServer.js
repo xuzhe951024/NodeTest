@@ -47,3 +47,111 @@
 // event.emit('eventHandler','argument1','argument2');
 
 //2018.07.14 23:10 今天菜鸟结束，看http模块然后睡觉
+
+//JS闭包补充（关于返回闭包函数时使用变量问题）
+// function count() {
+//     var arr = [];
+//     for (var i=1; i<=3; i++) {
+//         arr.push(function () {
+//             return i * i;
+//         });
+//     }
+//     return arr;
+// }
+
+// var results = count();
+// var f1 = results[0];
+// var f2 = results[1];
+// var f3 = results[2];
+// //廖雪峰:返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。
+
+//需要在闭包中引用循环变量时
+// function count() {
+//     var arr = [];
+//     for (var i=1; i<=3; i++) {
+//         arr.push((function (n) {
+//             return function () {
+//                 return n * n;
+//             }
+//         })(i));
+//     }
+//     return arr;
+// }
+
+// var results = count();
+// var f1 = results[0];
+// var f2 = results[1];
+// var f3 = results[2];
+
+//多层闭包
+// 'use strict';
+// var zero = function (f) {
+//     return function (x) {
+//         return x;
+//     }
+// };
+// var test_zero = zero(1);
+// console.log(test_zero(3));
+
+// var one = function (f) {
+//     return function (x) {
+//         return f(x);
+//     }
+// };
+// var test_one = one(function (x) {
+//     return x+1;
+// });
+// console.log(test_one(1));
+
+
+//test for Arrow Function
+//return Object(s) with Arrow Function
+// var test_arrFunc = x => ({ foo: x});
+// console.log(test_arrFunc(1));
+
+//test for Generator
+// function* next_id(){
+//     for (x = 1; x<100; x ++){
+//         yield x;
+//     }
+//     return ;
+// }
+// var
+//     x,
+//     pass = true,
+//     g = next_id(),
+//     temp;
+// for (x = 1; x < 100; x ++) {
+//     temp = g.next().value;
+//     console.log(`x : ${x}, next : ${temp}`);
+//     if (temp !== x) {
+//         pass = false;
+//         console.log('测试失败!');
+//         break;
+//     }
+// }
+// if (pass) {
+//     console.log('测试通过!');
+// }
+
+
+function Cat(name) {
+    this.name = name;
+}
+Cat.prototype.say = function(){
+    return `Hello, ${this.name}!`;
+}
+
+var kitty = new Cat('Kitty');
+var doraemon = new Cat('哆啦A梦');
+console.log(kitty.name);
+console.log(typeof kitty.say);
+console.log(kitty.say());
+// console.log();
+// console.log();
+// console.log();
+if (kitty && kitty.name === 'Kitty' && kitty.say && typeof kitty.say === 'function' && kitty.say() === 'Hello, Kitty!' && kitty.say === doraemon.say) {
+    console.log('测试通过!');
+} else {
+    console.log('测试失败!');
+}
