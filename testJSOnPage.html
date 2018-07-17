@@ -1,0 +1,28 @@
+<form>
+    <input id="x"> + <input id="y">
+    <button id="calc" type="button">计算</button>
+</form>
+<script>
+    'use strict';
+
+    var $btn = $('#clac');
+
+    $btn.off('click');
+    
+    $btn.click(function(){
+        var 
+            x = parseFloat($('#x').val()),
+            y = parseFloat($('#y').val()),
+            result;
+        if (isNaN(x) || isNaN(y)) {
+            throw new Error('您的输入有误');
+        }
+        try{
+            result = x + y;
+            alert('计算结果：'+result);
+        }catch(e) {
+            alert('非法输入或输入有误！');
+        }
+    });
+</script>
+<!-- 卧槽了按钮点击事件怎么总是绑定不上去，jQuery有毒吧尼玛的 -->
