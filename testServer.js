@@ -157,5 +157,76 @@
 // }
 
 
+//test for util moudle
+// const util = require('util');
+// //util.log
+// util.log('test for Util.log');
+// //util.inspect()
+// let obj = {
+//     key : 'testKey',
+//     value : 'testValue'
+// };
 
-//2018.07.16 20:47 我日廖雪峰网站挺全面，打算结合菜鸟教程把这个看完，先写写里面提供的栗子
+// let str = util.inspect(obj);
+// util.log(str); //17 Jul 16:51:12 - { key: 'testKey', value: 'testValue' }
+
+// //util.format()
+// util.log(util.format('%d is a %s',19,'Number'));
+
+//test for path moudle
+// const path = require('path');
+// //test for path.join()
+// let str_path = path.join(__dirname,'NodeTest','testServer.js');
+// console.log(str_path);
+// //test for path.extname
+// let str_extname = path.extname(str_path);
+// console.log(str_extname);
+// //test for path.parse
+// let obj_parse = path.parse(str_path);
+// console.log(obj_parse);
+// //test for path.format
+// let str_PathFormat = path.format(obj_parse);
+// console.log(str_PathFormat);
+
+//test for dns moudle
+// const dns = require('dns');
+// //test for dns.resolve()
+// let domain = 'google.com';
+// dns.resolve(domain,function (err, address) {
+//     if(err){
+//         console.log(err);
+//         return;
+//     }
+//     console.log(address);
+// });
+// //test for dns.lookup()
+// let IPaddr;
+// dns.lookup(domain,function (err, address) {
+//     if(err){
+//         console.log(err);
+//         return;
+//     }
+//     console.log(address);
+// });
+// //test for dns.reverse()
+// dns.reverse('172.217.31.238',function (err, domain1) {
+//     console.log(domain1);
+// });
+
+//test for arr.splice
+// var arr = new Array(6)
+// arr[0] = "George"
+// arr[1] = "John"
+// arr[2] = "Thomas"
+// arr[3] = "James"
+// arr[4] = "Adrew"
+// arr[5] = "Martin"
+
+// console.log(arr.splice(2));
+
+//test for fs.stat
+const fs = require('fs');
+const path = require('path');
+fs.stat(path.join(__dirname,'eg1/img/1.jpg').toString(),function(err,stats){
+    console.log(stats);
+});
